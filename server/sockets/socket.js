@@ -4,41 +4,24 @@ const { TicketControl } = require('../classes/ticket-control')
 const ticketControl = new TicketControl();
 
 io.on('connection', (client) => {
+  console.log('Usuario conectado');
 
-    console.log('Usuario conectado');
+  client.emit('siguienteTicket', {
+    message: 'Bienvenido a esta aplicacion'
+  })
 
-    client.emit('enviarMensaje', {
-        usuario: 'Administrador',
-        mensaje: 'Bienvenido a esta aplicación'
-    });
-
-
-
-    client.on('disconnect', () => {
-        console.log('Usuario desconectado');
-    });
-
-    // Escuchar el cliente
-    client.on('enviarMensaje', (data, callback) => {
-
-        console.log(data);
-
-        client.broadcast.emit('enviarMensaje', data);
+  client.on('disconnect', () => {
+    console.log('Usuario desconectado');
+  })
 
 
-        // if (mensaje.usuario) {
-        //     callback({
-        //         resp: 'TODO SALIO BIEN!'
-        //     });
+  client.on('siguienteTicket', (data, callback) => {
+    console.log('Cual es el siguiente ticket');
+    // Mediante la clase tambien se puede accder al metodo
+    let next = ticketControl.nextTicket()
+    console.log(next);
 
-        // } else {
-        //     callback({
-        //         resp: 'TODO SALIO MAL!!!!!!!!'
-        //     });
-        // }
-
-
-
-    });
+    callback(next);
+  })
 
 });
