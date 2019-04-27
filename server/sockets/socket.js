@@ -8,11 +8,11 @@ io.on('connection', (client) => {
 
   client.emit('siguienteTicket', {
     message: 'Bienvenido a esta aplicacion'
-  })
+  });
 
   client.on('disconnect', () => {
     console.log('Usuario desconectado');
-  })
+  });
 
   // Escuchar eventos
   client.on('siguienteTicket', (data, callback) => {
@@ -22,6 +22,10 @@ io.on('connection', (client) => {
     console.log(next);
 
     callback(next);  //Callback que proviene del frontend
-  })
+  });
+
+  client.emit('currentState', {
+    current: ticketControl.getLastTicket()
+  });
 
 });
