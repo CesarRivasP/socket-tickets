@@ -20,6 +20,11 @@ $('button').on('click', function(){
   });
 })
 
+socket.on('currentState', function(currentTicket){
+  console.log(currentTicket);
+  label.text(currentTicket.current);
+})
+
 socket.on('siguienteTicket', function(message) {
   console.log('Servidor: ', message);
 })
