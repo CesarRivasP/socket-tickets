@@ -2,17 +2,19 @@
 var socket = io();
 var label = $('#lblNuevoTicket');
 
+// Escuchar conexion con el servidor, si es satisfactoria o no
 socket.on('connect', function(){
   console.log('Conectado al servidor');
 });
 
+// Escuchar la conexion con el servidor, si ocurre una desconexion
 socket.on('disconnect', function(){
   console.log('Perdida la conexión al servidor');
 });
 
 // todos los botones al hacer click en esta pantalla van a disparar esta funcion
 $('button').on('click', function(){
-  console.log('click');
+  // console.log('click');           //callback a enviar al servidor. En el servidor se debe ejecutar el callback
   socket.emit('siguienteTicket', null, function(nextTicket) {
     label.text(nextTicket);
   });
