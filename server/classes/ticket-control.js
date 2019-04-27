@@ -30,6 +30,11 @@ class TicketControl {
     return `Ticket ${this.last}`;
   }
 
+  getLastTicket(){
+    // Va a retornar cual fue el ultimo ticket
+    return`Ticket ${this.last}`;
+  }
+
   recordFile(){
     let jsonData = {
       last: this.last,
