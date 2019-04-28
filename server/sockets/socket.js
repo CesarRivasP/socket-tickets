@@ -28,4 +28,21 @@ io.on('connection', (client) => {
     current: ticketControl.getLastTicket()
   });
 
+  client.on('attendTicket', (data, callback) => {
+    // Lo que llega en data es lo que se envia desde la emision
+    //en el cliente
+    console.log(data.numberBox);
+    if(!data.numberBox){
+      return callback({
+        err: true,
+        message: 'El numero de caja es necesario '
+      })
+    }
+
+    let attendTickets = ticketControl.attendTicket(data.numberBox);
+    callback(attendTickets);
+
+    // Actualizar o notificar cambios en los ultimos 4
+  })
+
 });
