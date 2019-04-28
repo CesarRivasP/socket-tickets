@@ -53,6 +53,10 @@ class TicketControl {
     return`Ticket ${this.last}`;
   }
 
+  getLastFour(){
+    return this.lastFour;
+  }
+
   attendTicket(numberBox){
     // si no hay tickets pendientes, no se debe hacer nada
     if(this.tickets.length === 0){
