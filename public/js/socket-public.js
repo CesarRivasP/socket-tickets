@@ -37,6 +37,18 @@ socket.on('currentState', function(data){
   updateHTML(data.lastFour);
 });
 
+
+socket.on('lastFour', function(data){
+  // console.log('data' + data.lastFour);
+
+  // Reproducir un audio
+  var audio = new Audio('audio/new-ticket.mp3');
+  audio.play();
+
+  updateHTML(data.lastFour);
+
+});
+
 // Para actualizar el html
 function updateHTML(lastFour){
   console.log(lastFour.length );
