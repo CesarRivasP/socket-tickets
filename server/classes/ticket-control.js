@@ -9,7 +9,6 @@ class Ticket {
 }
 
 
-
 // let ticketControl = new TicketControl() Al ocurrir esto, se dispara el constructor
 class TicketControl {
   constructor(){  //Para inicializar la clase
